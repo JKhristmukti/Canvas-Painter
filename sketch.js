@@ -1,5 +1,6 @@
 var database,position;
 var dot;
+var drawing = [];
 
 function setup(){
     createCanvas(500,500);
@@ -18,20 +19,22 @@ function draw(){
 
 function mouseDragged() {
     var dot = createSprite(mouseX,mouseY,10,10);
-    dot.shapeColor = "black";
-    writePosition(mouseX,mouseY);
+    drawing.push(dot);
+
+    writePosition(dot.x,dot.y);
 }
 
-function mouseReleased() {
+function mousePressed() {
     var dot = createSprite(mouseX,mouseY,10,10);
-    dot.shapeColor = "black";
-    writePosition(mouseX,mouseY);
+    drawing.push(dot);
+
+    writePosition(dot.x,dot.y);
 }
 
 function writePosition(x,y){
     database.ref('dot/position').set({
-        'x': position.x + x,
-        'y': position.y + y
+        'x': position.x = x,
+        'y': position.y = y
     })
 }
 
